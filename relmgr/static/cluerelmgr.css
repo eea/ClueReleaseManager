@@ -24,13 +24,20 @@ TABLE.distro-listing TH.distro-updated {
     width: 10em;
 }
 
+.section {
+  max-width: 940px;
+  overflow: auto;
+}
+
 .top {
     clear: both;
-    height: 2em;
+    height: 5em;
 }
 
 .top .logo {
     float: left;
+    font-size: 32px;
+    margin-top: 10px;
 }
 
 .top-actions {
@@ -41,7 +48,6 @@ TABLE.distro-listing TH.distro-updated {
 
 .top-actions LI {
     display: inline;
-    border-left: 1px solid black;
     padding: 0;
     padding-left: 0.3em;
     margin: 0;
@@ -50,6 +56,8 @@ TABLE.distro-listing TH.distro-updated {
 
 .breadcrumbs {
     font-size: 75%;
+    clear: both;
+    padding-top: 1em;
 }
 
 .distro-block {
@@ -347,7 +355,8 @@ textarea {
 }
 
 body {
-  margin: 0;
+  max-width: 940px;
+  margin: auto;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 20px;
