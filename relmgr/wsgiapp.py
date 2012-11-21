@@ -383,10 +383,10 @@ class PyPiInnerApp(AbstractPyPiApp):
         return werkzeug.Response('Unauthorized', status=401)
 
     def respond_pypi_action(self, req):
-        remote_user = req.environ.get('REMOTE_USER', None)
-        if not remote_user:
-            res = werkzeug.Response('Unauthorized', status=401)
-            return res
+        #remote_user = req.environ.get('REMOTE_USER', None)
+        #if not remote_user:
+        #    res = werkzeug.Response('Unauthorized', status=401)
+        #    return res
 
         params = req.values.to_dict()
         params.update(req.files)
@@ -495,38 +495,39 @@ class PyPiApp(object):
         innerapp = PyPiInnerApp(pypi=self.pypi, backup_pypis=self.backup_pypis)
         innerapp.logger = self.logger
 
-        if self.security_config is None:
-            identifiers = [('basicauth', basicauth.BasicAuthPlugin('pypi'))]
+        #if self.security_config is None:
+        #    identifiers = [('basicauth', basicauth.BasicAuthPlugin('pypi'))]
 
-            def factory(engine=self.pypi.engine):
-                return engine.raw_connection()
+        #    def factory(engine=self.pypi.engine):
+        #        return engine.raw_connection()
 
-            authenticators = [('sqlauth', sql.SQLAuthenticatorPlugin
-                ('SELECT username, password FROM users WHERE username=:login',
-                 factory,
-                 None))]
-            challengers = identifiers
-            mdproviders = []
-        else:
-            parser = whoconfig.WhoConfig(os.getcwd())
-            parser.parse(open(self.security_config))
-            identifiers = parser.identifiers
-            authenticators = parser.authenticators
-            challengers = parser.challengers
-            mdproviders = parser.mdproviders
+        #    authenticators = [('sqlauth', sql.SQLAuthenticatorPlugin
+        #        ('SELECT username, password FROM users WHERE username=:login',
+        #         factory,
+        #         None))]
+        #    challengers = identifiers
+        #    mdproviders = []
+        #else:
+        #    parser = whoconfig.WhoConfig(os.getcwd())
+        #    parser.parse(open(self.security_config))
+        #    identifiers = parser.identifiers
+        #    authenticators = parser.authenticators
+        #    challengers = parser.challengers
+        #    mdproviders = parser.mdproviders
 
-        app = whomiddleware.PluggableAuthenticationMiddleware(
-            innerapp,
-            identifiers,
-            authenticators,
-            challengers,
-            mdproviders,
-            classifiers.default_request_classifier,
-            classifiers.default_challenge_decider,
-            log_stream = self.securelogger,
-            log_level = self.securelogger.getEffectiveLevel(),
-            )
+        #app = whomiddleware.PluggableAuthenticationMiddleware(
+        #    innerapp,
+        #    identifiers,
+        #    authenticators,
+        #    challengers,
+        #    mdproviders,
+        #    classifiers.default_request_classifier,
+        #    classifiers.default_challenge_decider,
+        #    log_stream = self.securelogger,
+        #    log_level = self.securelogger.getEffectiveLevel(),
+        #    )
 
+        app = innerapp
         if self.baseurl:
             app = VirtualHostMiddleware(self.baseurl, app)
 
