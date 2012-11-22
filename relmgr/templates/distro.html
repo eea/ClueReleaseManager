@@ -9,7 +9,20 @@
     <dt>Distro Index Owner:</dt>
     <dd>{{ distro.owner }}</dd>
     <dt>Home Page:</dt>
-    <dd><a href="{{ distro.home_page }}">{{ distro.home_page }}</a></dd>
+    <dd><a href="{{ distro.home_page }}">{{ distro.name }}</a></dd>
+    <dt>License</dt>
+    <dd> {{ distro.license }}</dd>
+    <dt>Version:</dt>
+    <dd> {{ distro.version }}</dd>
+    <dt>Last updated:</dt>
+    <dd> {{ distro.last_updated.strftime('%Y-%m-%d') }} </dd>
+    <dt>Keywords:</dt>
+    <dd>
+      {% for keyword in distro.keywords.split() %}
+      <a href="{{ url_root }}search?s={{ keyword  }}">{{ keyword }}</a>
+      {% endfor %}
+    </dd>
+
   </dl>
 </div>
 
