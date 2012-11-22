@@ -25,7 +25,7 @@ TABLE.distro-listing TH.distro-updated {
 }
 
 .section {
-  max-width: 940px;
+  max-width: 1050px;
   overflow: auto;
 }
 
@@ -355,7 +355,8 @@ textarea {
 }
 
 body {
-  max-width: 940px;
+  max-width: 1050px;
+  min-width: 995px;
   margin: auto;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
@@ -872,7 +873,6 @@ h6 small {
 h1,
 h2,
 h3 {
-  line-height: 40px;
 }
 
 h1 {

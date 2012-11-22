@@ -2,19 +2,17 @@
 {% block title %}{{ super() }} :: Search{% endblock %}
 {% block content %}
 
-<div class="distro-searchform">
-  <form action="search">
-    <div class="field">
-      <label for="search">Search</label>
-      <input type="text" name="s" value="{{ s }}" />
-    </div>
-    <input type="submit" value="search" />
+<div class="row">
+
+<h3 class="span9">Search Results</h3>
+<div class="span4" style="width: 320px; text-align: right">
+  <form action="search" class="form-search">
+    <input type="text" name="s" value="{{ s }}" class="input-medium search-query" />
+    <input type="submit" value="search" class="btn" />
   </form>
 </div>
 
 {% if page.full_item_count %}
-
-<h3>Search Results</h3>
 
 {% import 'listing.html' as listing %}
 {{ listing.list(items) }}

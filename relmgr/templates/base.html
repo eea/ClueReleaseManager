@@ -4,14 +4,14 @@
     <link rel="stylesheet" type="text/css" charset="utf-8"
           media="all" href="{{ url_root }}static/cluerelmgr.css" />
 
-    <title>{% block title %}EEA Eggs Server repository{% endblock %}</title>
+    <title>{% block title %}EEA - Eggs Server Repository{% endblock %}</title>
   </head>
   <body>
+    <ul class="top-actions">
+      <li><a href="{{ url_root }}simple/">Simple Index</a></li>
+    </ul>
     <div class="top">
-      <div class="logo"><a href="{{ url_root }}">EEA Eggs Server repository</a></div>
-      <ul class="top-actions">
-        <li><a href="{{ url_root }}simple/">Simple Index</a></li>
-      </ul>
+      <div class="logo"><a href="{{ url_root }}">EEA - Eggs Server Repository</a></div>
     </div>
     {% block content %}{% endblock %}
   </body>
