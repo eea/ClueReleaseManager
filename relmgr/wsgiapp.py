@@ -252,8 +252,8 @@ class PyPiInnerApp(AbstractPyPiApp):
     urlmap.add(routing.Rule('/login', endpoint='login'))
     urlmap.add(routing.Rule('/logout', endpoint='logout'))
     urlmap.add(routing.Rule('/simple', redirect_to='simple/'))
-    urlmap.add(routing.Rule('/simple/', endpoint='simple'))
-    urlmap.add(RegexRule('/simple/.*', endpoint='simple'))
+    urlmap.add(routing.Rule('/simple/', endpoint='egg_index'))
+    #urlmap.add(RegexRule('/simple/.*', endpoint='simple'))
     urlmap.add(routing.Rule('/favicon.ico', endpoint='special_static'))
     urlmap.add(routing.Rule('/<distro_id>/', endpoint='redirect_distro'))
     urlmap.add(routing.Rule('/d/<distro_id>/', endpoint='distro'))
@@ -301,6 +301,18 @@ class PyPiInnerApp(AbstractPyPiApp):
         for distro, pkgdistro, fname in index:
             yield (u'<li><a href="../../%s/f/%s">%s</a></li>'
                    % (distro.distro_id, fname, fname))
+        yield u'</ul></body></html>'
+
+    @utils.respond
+    def respond_egg_index(self, req):
+        yield u'<html><body><ul>'
+
+        for distro in self.pypi.get_distros():
+            for fname in self.pypi.get_files(distro.distro_id):
+                base = os.path.basename(fname)
+                url = '/d/'+distro.distro_id+'/f/'+base
+                yield u'<li><a href="%s">%s</a></li>\n' % (url, base)
+
         yield u'</ul></body></html>'
 
     @utils.respond
