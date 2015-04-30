@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}{{ super() }} :: Search{% endblock %}
+{% block content %}
+
+<div class="row">
+
+<h3 class="span9">Search Results</h3>
+<div class="span4" style="width: 320px; text-align: right">
+  <form action="search" class="form-search">
+    <input type="text" name="s" value="{{ s }}" class="input-medium search-query" />
+    <input type="submit" value="search" class="btn" />
+  </form>
+</div>
+
+{% if page.full_item_count %}
+
+{% import 'listing.html' as listing %}
+{{ listing.list(items) }}
+
+{% import 'pager.html' as pager %}
+{{ pager.pager(page) }}
+
+{% else %}
+
+Sorry, No such results match your query.
+
+{% endif %}
+
+{% endblock %}
