@@ -29,12 +29,12 @@ setup(name='ClueReleaseManager',
       zip_safe=False,
       test_suite="clue.relmgr.tests.test_suite",
       install_requires=[
-          'setuptools',
-          'SQLAlchemy >= 0.5',
-          'repoze.who >= 1.0.8, <= 1.0.999',
-          'Werkzeug >= 0.4, <= 0.4.999',
-          'Jinja2 >= 2.1',
-          'docutils >= 0.5',
+          'setuptools == 38.2.3',
+          'SQLAlchemy == 1.1.15',
+          'repoze.who == 1.0.19',
+          'Werkzeug == 0.4.1',
+          'Jinja2 == 2.10',
+          'docutils == 0.14',
           ],
       entry_points={
           'console_scripts': [
